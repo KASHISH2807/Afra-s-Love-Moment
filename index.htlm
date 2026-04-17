@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖 For Afra</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ff4d6d, #ff99aa);
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+    }
+
+    .card {
+        background: rgba(255,255,255,0.15);
+        padding: 25px;
+        border-radius: 20px;
+        width: 90%;
+        max-width: 420px;
+        backdrop-filter: blur(10px);
+        box-sizing: border-box;
+    }
+
+    h2 { margin: 10px 0; }
+
+    button {
+        padding: 12px 20px;
+        margin: 10px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.3s;
+    }
+
+    .yes {
+        background: #ff2e63;
+        color: white;
+    }
+
+    .no {
+        background: white;
+        color: #ff2e63;
+        position: fixed;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .emoji {
+        position: fixed;
+        font-size: 24px;
+        animation: fall 2s linear forwards;
+        pointer-events: none;
+    }
+
+    @keyframes fall {
+        from { transform: translateY(-10px); opacity: 1; }
+        to { transform: translateY(100vh); opacity: 0; }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- STEP 1 -->
+<div class="card" id="step1">
+    <h2>Hey Afra ❤️</h2>
+    <p>I, <b>Tanzeem Khan</b>, want to give you something 💖</p>
+    <p>Do you want to know?</p>
+    <button class="yes" onclick="step2()">Yes</button>
+</div>
+
+<!-- STEP 2 -->
+<div class="card hidden" id="step2">
+    <h2>Afra 💕</h2>
+    <p>Can I say something important to you?</p>
+    <button class="yes" onclick="love()">Yes</button>
+</div>
+
+<!-- STEP 3 -->
+<div class="card hidden" id="step3">
+    <h2>💖 Afra</h2>
+    <p><b>Tanzeem Khan</b> says...</p>
+    <h3>I love you so much ❤️</h3>
+    <button class="yes" onclick="finalStep()">Next</button>
+</div>
+
+<!-- STEP 4 -->
+<div class="card hidden" id="step4">
+    <h2>Afra ☕💖</h2>
+    <p>Coffee date with <b>Tanzeem Khan</b>?</p>
+
+    <button class="yes" onclick="yesFinal()">Yes</button>
+    <button class="no" id="noBtn">No</button>
+</div>
+
+<script>
+function step2() {
+    document.getElementById("step1").classList.add("hidden");
+    document.getElementById("step2").classList.remove("hidden");
+}
+
+function love() {
+    document.getElementById("step2").classList.add("hidden");
+    document.getElementById("step3").classList.remove("hidden");
+
+    for (let i = 0; i < 30; i++) {
+        let emoji = document.createElement("div");
+        emoji.classList.add("emoji");
+        emoji.innerHTML = "💋❤️";
+        emoji.style.left = Math.random() * window.innerWidth + "px";
+        emoji.style.top = "-20px";
+        document.body.appendChild(emoji);
+
+        setTimeout(() => emoji.remove(), 2000);
+    }
+}
+
+function finalStep() {
+    document.getElementById("step3").classList.add("hidden");
+    document.getElementById("step4").classList.remove("hidden");
+
+    moveNoButton(); // start movement
+}
+
+function yesFinal() {
+    alert("Great choice Afra ❤️☕ Tanzeem is waiting for you 💖");
+}
+
+// ❌ No button runs away (mobile + laptop safe)
+const noBtn = document.getElementById("noBtn");
+
+function moveNoButton() {
+    setInterval(() => {
+        const x = Math.random() * (window.innerWidth - 120);
+        const y = Math.random() * (window.innerHeight - 60);
+
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }, 800);
+}
+</script>
+
+</body>
+</html>
